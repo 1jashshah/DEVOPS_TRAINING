@@ -1,0 +1,6 @@
+logs are shown below :-
+Aug  9 16:37:32 AHMLPT2603 systemd[3169]: Starting Tracker metadata extractor...
+Aug  9 16:37:32 AHMLPT2603 dbus-daemon[3191]: [session uid=1000 pid=3191] Successfully activated service 'org.freedesktop.Tracker3.Miner.Extract'
+Aug  9 16:37:32 AHMLPT2603 systemd[3169]: Started Tracker metadata extractor.
+Aug  9 16:37:34 AHMLPT2603 teams-for-linux_teams-for-linux.desktop[5168]: [DEBUG] GetSystemIdleState => IdleTimeout: 300s, IdleTimeoutPollInterval: 10s, ActiveCheckPollInterval: 2s, IdleTime: 0s, IdleState: 'active'
+

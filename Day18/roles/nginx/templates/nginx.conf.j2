@@ -1,0 +1,9 @@
+server {
+    listen {{ nginx_vhosts[0].listen }};
+    server_name {{ nginx_vhosts[0].server_name }};
+
+    location / {
+        root {{ nginx_vhosts[0].root }};
+        index {{ nginx_vhosts[0].index }};
+    }
+}

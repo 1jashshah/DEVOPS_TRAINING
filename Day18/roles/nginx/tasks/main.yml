@@ -1,0 +1,36 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+  notify: reload nginx
+
+- name: Copy Nginx configuration
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/{{ nginx_vhosts[0].server_name }}
+  notify: reload nginx
+
+- name: Enable Nginx site
+  file:
+    src: /etc/nginx/sites-available/{{ nginx_vhosts[0].server_name }}
+    dest: /etc/nginx/sites-enabled/{{ nginx_vhosts[0].server_name }}
+    state: link
+  notify: reload nginx
+
+- name: Remove default Nginx site
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: reload nginx
+
+- name: Ensure Nginx is running
+  service:
+    name: nginx
+    state: started
+    enabled: true
+- name: Copy frontend content
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html
+  notify: reload nginx

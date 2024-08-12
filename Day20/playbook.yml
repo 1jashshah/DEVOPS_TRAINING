@@ -1,0 +1,7 @@
+- name: Run a long task asynchronously
+  hosts: all
+  tasks:
+    - name: copy file
+      ansible.builtin.copy:
+        src: test.txt
+        dest: /home/ubuntu

@@ -1,0 +1,30 @@
+---
+- name: Playbook with Error Handling
+  hosts: web
+  become: yes
+  tasks:
+    - name: Example of Error Handling in Ansible
+      block:
+        - name: Start a non-existent service (This task will fail)
+          ansible.builtin.service:
+            name: httpd
+            state: started
+
+        - name: Access a non-existent file (This task will also fail)
+          ansible.builtin.command:
+            cmd: cat /home/jash.txt
+
+      rescue:
+        - name: Handle the error for the non-existent service
+          ansible.builtin.debug:
+            msg: "Failed to start the non-existent service. Please check the service name and try again."
+
+        - name: Handle the error for the non-existent file
+          ansible.builtin.debug:
+            msg: "Failed to access the non-existent file. Please verify the file path and ensure the file exists."
+
+      always:
+        - name: Log error handling completion
+          ansible.builtin.debug:
+            msg: "Error handling block has completed. Ensure that errors have been addressed and resolved."
+

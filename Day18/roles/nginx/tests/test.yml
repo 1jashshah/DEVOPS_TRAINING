@@ -1,0 +1,5 @@
+---
+- hosts: frontend
+  remote_user: root
+  roles:
+    - roles/nginx

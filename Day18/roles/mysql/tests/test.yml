@@ -1,0 +1,5 @@
+---
+- hosts: backend
+  remote_user: root
+  roles:
+    - roles/mysql

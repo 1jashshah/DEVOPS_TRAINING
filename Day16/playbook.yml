@@ -1,0 +1,19 @@
+---
+- name: INSTALL APACHE
+  hosts: web
+  become: true
+  tasks:
+    - name: Update Cache
+      apt:
+        update_cache: yes
+
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Ensure Apache is running and enabled
+      service:
+        name: apache2
+        state: restarted
+        enabled: yes

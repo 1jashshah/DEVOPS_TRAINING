@@ -1,0 +1,13 @@
+# # vars.yml
+root_password: 1234
+admin_user: admin
+admin_password: 1234
+db_name: mynewsql
+password_validation_policy: 1  # This can be 0 (LOW), 1 (MEDIUM), or 2 (STRONG)
+mysql_bind_address: 0.0.0.0
+mysql_port: 3306
+mysql_storage_engine: InnoDB
+mysql_root_password: 1234
+mysql_database: "webapp_db"
+mysql_user: "webapp_user"
+mysql_password: 1234

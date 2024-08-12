@@ -1,0 +1,4 @@
+---
+frontend_content:
+  - src: files/index.html
+    dest: /var/www/html/index.html

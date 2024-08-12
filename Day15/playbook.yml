@@ -1,0 +1,42 @@
+---
+- name: Deploying container
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Instaling python pip
+      apt:
+        name: python3-pip
+        state: present
+        update_cache: yes
+
+    - name: Installing Docker SDK
+      pip:
+        name: docker
+        state: present
+
+    - name: Installing Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    - name: Making dokcer service running
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Pulling docker image
+      docker_image:
+        name: 1jashshah/ansible
+        tag: latest
+        source: pull
+
+    - name: Running docker container
+      docker_container:
+        name: my_test_container
+        image: 1jashshah/ansible:latest
+        state: started
+        restart_policy: always
+        ports:
+          - "8081:80"

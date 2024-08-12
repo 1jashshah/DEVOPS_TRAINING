@@ -1,0 +1,7 @@
+mysql_root_password: "root_password"
+mysql_databases:
+  - name: app_db
+mysql_users:
+  - name: app_user
+    password: "app_password"
+    priv: "app_db.*:ALL"

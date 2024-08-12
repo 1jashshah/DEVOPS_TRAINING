@@ -1,0 +1,18 @@
+---
+# - name: Deploy Node.js application
+#   hosts: backend
+#   become: yes
+#   roles:
+#     - node.js
+
+- name: Deploy Nginx web server
+  hosts: frontend
+  become: yes
+  roles:
+    - nginx
+
+# - name: Deploy MySQL server
+#   hosts: database
+#   become: yes
+#   roles:
+#     - mysql

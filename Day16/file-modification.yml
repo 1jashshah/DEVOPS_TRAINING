@@ -1,0 +1,38 @@
+---
+- name: Manage files on managed nodes using ansible.builtin modules
+  hosts: web  # Adjust this to match the group or host where you want to manage files
+  become: yes
+  tasks:
+    - name: Create a file with specific content
+      ansible.builtin.copy:
+        dest: /tmp/example_file.txt
+        content: |
+          This is an example file created by Ansible.
+          It contains multiple lines of text.
+        mode: '0644'
+      # This task creates a file with specific content and sets permissions.
+
+    - name: Add a line to an existing file
+      ansible.builtin.lineinfile:
+        path: /tmp/example_file.txt
+        line: "This line is added by Ansible."
+        create: yes
+      # This task appends a line to the file. It also creates the file if it does not exist.
+
+    - name: Ensure a directory exists
+      ansible.builtin.file:
+        path: /tmp/example_directory
+        state: directory
+        mode: '0755'
+      # This task ensures that a directory exists with specific permissions.
+
+    - name: Remove a file
+      ansible.builtin.file:
+        path: /tmp/unnecessary_file.txt
+        state: absent
+      # This task removes a file if it exists.
+
+    - name: Delete a directory
+      ansible.builtin.command:
+        cmd: rm -rf /tmp/example_directory
+      # This task removes a directory and its contents.

@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-k8s-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harshap0202/day-7-nodejs-k8s-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harshap0202/day-7-nodejs-k8s-project/issues"
+  },
+  "homepage": "https://github.com/harshap0202/day-7-nodejs-k8s-project#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2"
+  },
+  "scripts": {
+  "start": "node app.js"
+  }
+}

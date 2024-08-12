@@ -1,0 +1,29 @@
+---
+- name: Test Three-Tier Web Application
+  hosts: all
+  tasks:
+    - name: Check Nginx service
+      service:
+        name: nginx
+        state: started
+      when: "'frontend' in group_names"
+
+    - name: Check Node.js application
+      command: curl http://localhost:3000
+      register: result
+      when: "'backend' in group_names"
+    - name: Print Node.js application response
+      debug:
+        msg: "{{ result.stdout }}"
+      when: "'backend' in group_names"
+
+    - name: Check MySQL service
+      service:
+        name: mysql
+        state: started
+      when: "'database' in group_names"
+    - name: Check MySQL database
+      mysql_db:
+        name: app_db
+        state: present
+      when: "'database' in group_names"

@@ -1,0 +1,5 @@
+---
+mysql_root_password: "root_password"
+mysql_database: "mydatabase"
+mysql_user: "myuser"
+mysql_user_password: "user_password"
