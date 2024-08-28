@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"jash_app","Source":"./modules/app","Dir":"modules/app"},{"Key":"my_infrastructure","Source":"./terraform-module","Dir":"terraform-module"}]}
