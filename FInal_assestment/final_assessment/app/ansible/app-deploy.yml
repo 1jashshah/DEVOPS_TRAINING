@@ -1,0 +1,26 @@
+---
+- name: Deploy Application
+  hosts: k8s_nodes
+  become: yes
+  tasks:
+    - name: Create a Kubernetes namespace
+      kubernetes.core.k8s:
+        state: present
+        definition: |
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: my-app
+
+    - name: Deploy Application using Helm
+      community.kubernetes.helm:
+        name: my-app
+        chart_ref: ./helm/my-app-chart
+        state: present
+        namespace: my-app
+        values:
+          image:
+            repository: bhavik1212/simple-web-app
+            tag: latest
+          s3_bucket:
+            name: static-assets-bucket

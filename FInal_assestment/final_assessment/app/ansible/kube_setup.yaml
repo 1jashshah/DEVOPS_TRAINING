@@ -1,0 +1,54 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  
+  - name: Install required packages
+    apt:
+      name: 
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg
+        - lsb-release
+      state: present
+      update_cache: yes
+
+  - name: Add Kubernetes apt repository key
+    apt_key:
+      url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+      state: present
+
+  - name: Add Kubernetes apt repository
+    apt_repository:
+      repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+      state: present
+
+  - name: Install kubeadm, kubelet, and kubectl
+    apt:
+      name: 
+        - kubelet
+        - kubeadm
+        - kubectl
+      state: latest
+      update_cache: yes
+
+  - name: Hold Kubernetes packages to avoid automatic updates
+    apt:
+      name: 
+        - kubelet
+        - kubeadm
+        - kubectl
+      state: present
+      allow_unauthenticated: yes
+      mark: hold
+
+  - name: Enable and start kubelet
+    systemd:
+      name: kubelet
+      enabled: yes
+      state: started
+
+  - name: Install Helm
+    shell: |
+      curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
